@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">MyLocation</string>
+
+    <!--- MyLocationActivity用-->
+    <string name="locationStart">測位開始</string>
+    <string name="locationStop">測位停止</string>
+    <string name="locationSetting">設定</string>
+
+    <!---Setting用の項目 -->
+    <string name="settingCount">COUNT</string>
+    <string name="settingTimeout">TIMEOUT</string>
+    <string name="settingInterval">INTERVAL</string>
+    <string name="settingSuplEndWaitTime">SUPLENDWAITTIME</string>
+    <string name="settinDelAssistdataTime">DelAssistdataTime</string>
+
+    <!---測位種別用の文字列定数 -->
+    <string name="locationUeb">LocationUeb</string>
+    <string name="locationUea">LocationUea</string>
+    <string name="locationNw">LocationNw</string>
+    <string name="locationFlp">LocationFlp</string>
+    <string name="locationiArea">LocationiArea</string>
+
+    <!---測位結果をIntentで通知する場合の判別用のタグ-->
+    <string name="TagisFix">isFix</string>
+    <string name="TagLat">lattude</string>
+    <string name="TagLong">longitude</string>
+    <string name="Tagttff">TTFF</string>
+
+    <!--ServiceからPresentationが受け取る値の種類-->
+    <!--この値によってActivityに対する処理を変える-->
+    <string name="category">category</string>
+    <string name="categoryLocation">categoryLocation</string>
+    <string name="categoryColdStart">CategoryColdStart</string>
+    <string name="categoryColdStop">CategoryColdStop</string>
+    <string name="categoryServiceEnd">CategoryServiceEnd</string>
+</resources>

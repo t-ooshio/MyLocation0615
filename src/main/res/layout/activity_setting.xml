@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="jp.sio.testapp.mylocation.Activity.SettingActivity">
+
+    <ScrollView
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/TextViewCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settingCount" />
+
+            <EditText
+                android:id="@+id/editTextCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number|numberSigned|numberDecimal"
+                android:text="0"
+                app:layout_constraintTop_toBottomOf="@+id/TextViewCount" />
+
+            <TextView
+                android:id="@+id/TextViewTimeout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settingTimeout"
+                app:layout_constraintTop_toBottomOf="@+id/editTextCount" />
+
+
+            <EditText
+                android:id="@+id/editTextTimeout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number|numberSigned|numberDecimal"
+                android:text="0"
+                app:layout_constraintTop_toBottomOf="@+id/TextViewTimeout" />
+
+            <TextView
+                android:id="@+id/TextViewInterval"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settingInterval"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTimeout" />
+
+
+            <EditText
+                android:id="@+id/editTextInterval"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number|numberSigned|numberDecimal"
+                android:text="0"
+                app:layout_constraintTop_toBottomOf="@+id/TextViewInterval" />
+
+            <Button
+                android:id="@+id/ButtunSet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="設定反映"
+                app:layout_constraintTop_toBottomOf="@+id/EditTextInterval" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>
