@@ -7,11 +7,14 @@
     <string name="locationSetting">設定</string>
 
     <!---Setting用の項目 -->
+    <string name="settingPrefName">MyLocationSetting</string>
+    <string name="settingLocationType">LOCATIONTYPE</string>
     <string name="settingCount">COUNT</string>
     <string name="settingTimeout">TIMEOUT</string>
     <string name="settingInterval">INTERVAL</string>
+    <string name="settingIsCold">isCold</string>
     <string name="settingSuplEndWaitTime">SUPLENDWAITTIME</string>
-    <string name="settinDelAssistdataTime">DelAssistdataTime</string>
+    <string name="settingDelAssistdataTime">DelAssistdataTime</string>
 
     <!---測位種別用の文字列定数 -->
     <string name="locationUeb">LocationUeb</string>

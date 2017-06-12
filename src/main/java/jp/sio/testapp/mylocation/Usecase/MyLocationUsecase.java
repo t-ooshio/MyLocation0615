@@ -17,7 +17,7 @@ public class MyLocationUsecase {
             Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,Manifest.permission.ACCESS_NETWORK_STATE,
             Manifest.permission.INTERNET,Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.WAKE_LOCK};
 
     public MyLocationUsecase(MyLocationActivity activity){
         this.activity = activity;

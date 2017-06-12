@@ -62,6 +62,29 @@
                 android:inputType="number|numberSigned|numberDecimal"
                 android:text="0"
                 app:layout_constraintTop_toBottomOf="@+id/TextViewInterval" />
+            <TextView
+                android:id="@+id/TextViewSuplEndWaitTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settingSuplEndWaitTime"
+                app:layout_constraintTop_toBottomOf="@+id/editTextInterval" />
+            <EditText
+                android:id="@+id/editTextSuplEndWaitTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/TextViewSuplEndWaitTime" />
+                />
+            <TextView
+                android:id="@+id/TextViewDelAssistDataTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settingDelAssistdataTime"
+                app:layout_constrainTop_toBottomOf="@+id/editTextSUplEndWaitTime"/>
+            <EditText
+                android:id="@+id/editTextDelAssistDataTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constrainTop_toBottomOf="@+id/TextViewDelAssistDataTime"/>
 
             <Button
                 android:id="@+id/ButtunSet"

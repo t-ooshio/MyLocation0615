@@ -75,16 +75,18 @@ public class MyLocationPresenter {
         locationserviceIntent = new Intent(activity.getApplicationContext(),UebService.class);
 
         //TODO:とりあえずテスト用の適当数値を設定 あとで設定から読むように変える
-        int count = 1;
+        int count = 20;
         long timeout = 30;
         long interval = 30;
+        boolean isCold = true;
         int suplendwaittime = 3;
         int delassisttime = 3;
         locationserviceIntent.putExtra(activity.getResources().getString(R.string.settingCount),count);
         locationserviceIntent.putExtra(activity.getResources().getString(R.string.settingTimeout),timeout);
         locationserviceIntent.putExtra(activity.getResources().getString(R.string.settingInterval),interval);
+        locationserviceIntent.putExtra(activity.getResources().getString(R.string.settingIsCold),isCold);
         locationserviceIntent.putExtra(activity.getResources().getString(R.string.settingSuplEndWaitTime),suplendwaittime);
-        locationserviceIntent.putExtra(activity.getResources().getString(R.string.settinDelAssistdataTime),delassisttime);
+        locationserviceIntent.putExtra(activity.getResources().getString(R.string.settingDelAssistdataTime),delassisttime);
         activity.startService(locationserviceIntent);
         IntentFilter filter = new IntentFilter(activity.getResources().getString(R.string.locationUeb));
         activity.registerReceiver(locationReceiver,filter);
