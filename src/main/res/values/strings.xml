@@ -6,6 +6,9 @@
     <string name="locationStop">測位停止</string>
     <string name="locationSetting">設定</string>
 
+    <!--- SettingActivity用-->
+    <string name="settingActIsCold">アシストデータ削除</string>
+
     <!---Setting用の項目 -->
     <string name="settingPrefName">MyLocationSetting</string>
     <string name="settingLocationType">LOCATIONTYPE</string>
@@ -17,11 +20,12 @@
     <string name="settingDelAssistdataTime">DelAssistdataTime</string>
 
     <!---測位種別用の文字列定数 -->
-    <string name="locationUeb">LocationUeb</string>
-    <string name="locationUea">LocationUea</string>
-    <string name="locationNw">LocationNw</string>
-    <string name="locationFlp">LocationFlp</string>
-    <string name="locationiArea">LocationiArea</string>
+    <string name="locationList">測位種別</string>
+    <string name="locationUeb">UEB</string>
+    <string name="locationUea">UEA</string>
+    <string name="locationNw">NetworkProvider</string>
+    <string name="locationFlp">FLP</string>
+    <string name="locationiArea">OpeniArea</string>
 
     <!---測位結果をIntentで通知する場合の判別用のタグ-->
     <string name="TagisFix">isFix</string>

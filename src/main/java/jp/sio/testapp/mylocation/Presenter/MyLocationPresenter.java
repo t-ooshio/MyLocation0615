@@ -57,7 +57,7 @@ public class MyLocationPresenter {
     public MyLocationPresenter(MyLocationActivity activity){
         this.activity = activity;
         myLocationUsecase = new MyLocationUsecase(activity);
-        settingUsecase = new SettingUsecase(this.activity.getApplicationContext());
+        settingUsecase = new SettingUsecase(activity);
 
         categoryLocation = activity.getResources().getString(R.string.categoryLocation);
         categoryColdStart = activity.getResources().getString(R.string.categoryColdStart);
@@ -75,12 +75,21 @@ public class MyLocationPresenter {
         locationserviceIntent = new Intent(activity.getApplicationContext(),UebService.class);
 
         //TODO:とりあえずテスト用の適当数値を設定 あとで設定から読むように変える
+        /**
         int count = 20;
         long timeout = 30;
         long interval = 30;
         boolean isCold = true;
         int suplendwaittime = 3;
         int delassisttime = 3;
+         */
+         int count = settingUsecase.getCount();
+         long timeout = settingUsecase.getTimeout();
+         long interval = settingUsecase.getInterval();
+         boolean isCold = settingUsecase.getIsCold();
+         int suplendwaittime = settingUsecase.getSuplEndWaitTime();
+         int delassisttime = settingUsecase.getDelAssistDataTime();
+
         locationserviceIntent.putExtra(activity.getResources().getString(R.string.settingCount),count);
         locationserviceIntent.putExtra(activity.getResources().getString(R.string.settingTimeout),timeout);
         locationserviceIntent.putExtra(activity.getResources().getString(R.string.settingInterval),interval);
@@ -101,14 +110,6 @@ public class MyLocationPresenter {
     public void settingStart(){
         settingIntent = new Intent(activity.getApplicationContext(), SettingActivity.class);
         activity.startActivity(settingIntent);
-    }
-
-    public void startProgressDialog(String message){
-        activity.startProgressDialog(message);
-    }
-
-    public void stopProgressDialog(){
-        activity.stopProgressDialog();
     }
 
     public void showToast(String message){

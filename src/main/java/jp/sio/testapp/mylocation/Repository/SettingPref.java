@@ -3,7 +3,10 @@ package jp.sio.testapp.mylocation.Repository;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import jp.sio.testapp.mylocation.L;
 import jp.sio.testapp.mylocation.R;
+
+import static android.content.Context.*;
 
 /**
  * Created by NTT docomo on 2017/05/23.
@@ -23,18 +26,16 @@ public class SettingPref {
     private final int defDelAssistDataTime = 3;
     private final String defLocationType = "LocationUeb";
     //SharedPreference名
-    private String PREFNAME;
+    private String PREFNAME = "MyLocationSetting";
 
     /**
-     * SettingActivityのContextを取得する
-     * @param context
+     * SettingをShearedPreferencesに保存・読み込みを行う
      */
     public SettingPref(Context context){
         this.context = context;
     }
     public void createPref(){
-        PREFNAME = context.getString(R.string.settingPrefName);
-        settingPref = context.getSharedPreferences(PREFNAME,Context.MODE_PRIVATE);
+        settingPref = context.getSharedPreferences(PREFNAME, MODE_PRIVATE);
         editor = settingPref.edit();
     }
 
@@ -63,7 +64,7 @@ public class SettingPref {
         commitSetting();
     }
     public void setDelAssistDataTime(int delAssistDataTime){
-        editor.putInt(context.getString(R.string.settinDelAssistdataTime),delAssistDataTime);
+        editor.putInt(context.getString(R.string.settingDelAssistdataTime),delAssistDataTime);
         commitSetting();
     }
     public String getLocationType(){
@@ -88,7 +89,7 @@ public class SettingPref {
         return settingPref.getInt(context.getString(R.string.settingDelAssistdataTime),defDelAssistDataTime);
     }
 
-    public void loadDefaultSetting(){
+    public void setDefaultSetting(){
         setLocationType(defLocationType);
         setCount(defCount);
         setInterval(defInterval);
@@ -96,10 +97,12 @@ public class SettingPref {
         setIsCold(defIsCold);
         setSuplEndWaitTime(defSuplEndWaitTime);
         setDelAssistDataTime(defDelAssistDataTime);
+        commitSetting();
     }
 
     public void commitSetting(){
         editor.apply();
         editor.commit();
+        L.d("commitSetting");
     }
 }

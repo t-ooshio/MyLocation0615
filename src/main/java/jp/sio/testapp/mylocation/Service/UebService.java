@@ -110,7 +110,7 @@ public class UebService extends Service implements LocationListener {
         settingInterval = intent.getLongExtra(getBaseContext().getString(R.string.settingInterval), 0) * 1000;
         settingIsCold = intent.getBooleanExtra(getBaseContext().getString(R.string.settingIsCold), true);
         settingSuplEndWaitTime = intent.getIntExtra(getResources().getString(R.string.settingSuplEndWaitTime), 0) * 1000;
-        settingDelAssistdatatime = intent.getIntExtra(getResources().getString(R.string.settinDelAssistdataTime), 0) * 1000;
+        settingDelAssistdatatime = intent.getIntExtra(getResources().getString(R.string.settingDelAssistdataTime), 0) * 1000;
         runningCount = 0;
 
         //ログファイルの生成
