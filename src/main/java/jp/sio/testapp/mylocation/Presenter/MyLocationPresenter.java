@@ -73,16 +73,6 @@ public class MyLocationPresenter {
 
         //TODO どの測位を行うかをSettingから読み込み、実行するServiceを選択する処理を追加する
         locationserviceIntent = new Intent(activity.getApplicationContext(),UebService.class);
-
-        //TODO:とりあえずテスト用の適当数値を設定 あとで設定から読むように変える
-        /**
-        int count = 20;
-        long timeout = 30;
-        long interval = 30;
-        boolean isCold = true;
-        int suplendwaittime = 3;
-        int delassisttime = 3;
-         */
          int count = settingUsecase.getCount();
          long timeout = settingUsecase.getTimeout();
          long interval = settingUsecase.getInterval();
@@ -119,7 +109,6 @@ public class MyLocationPresenter {
     public class LocationReceiver extends BroadcastReceiver{
         Boolean isFix;
         double lattude, longitude, ttff;
-
         @Override
         public void onReceive(Context context, Intent intent) {
             Bundle bundle = intent.getExtras();

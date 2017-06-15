@@ -56,6 +56,12 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
+        settingPresenter.loadSetting();
+    }
+    @Override
+    protected void onResume(){
+        settingPresenter.loadSetting();
+        super.onResume();
     }
 
     public void onButtonSet(){
@@ -76,26 +82,26 @@ public class SettingActivity extends AppCompatActivity {
     public void setDelAssistDataTime(int delAssistDataTime){
         editTextDelAssistDataTime.setText(Integer.toString(delAssistDataTime));
     }
-    public  void enableRadioButtonUeb(){
-        radioButtonUeb.setEnabled(true);
+    public void enableRadioButtonUeb(){
+        radioButtonUeb.setChecked(true);
     }
     public void enableRadioButtonUea(){
-        radioButtonUea.setEnabled(true);
+        radioButtonUea.setChecked(true);
     }
     public void enableRadioButtonNetwork(){
-        radioButtonNetwork.setEnabled(true);
+        radioButtonNetwork.setChecked(true);
     }
     public void enableRadioButtonFlp(){
-        radioButtonFlp.setEnabled(true);
+        radioButtonFlp.setChecked(true);
     }
     public void enableRadioButtoniArea(){
-        radioButtoniArea.setEnabled(true);
+        radioButtoniArea.setChecked(true);
     }
     public void enableIsCold(){
-        checkBoxisCold.setEnabled(true);
+        checkBoxisCold.setChecked(true);
     }
     public void disableIsCold(){
-        checkBoxisCold.setEnabled(false);
+        checkBoxisCold.setChecked(false);
     }
     public int getCount(){
         String count;
@@ -121,6 +127,24 @@ public class SettingActivity extends AppCompatActivity {
         String delassistdatatime;
         delassistdatatime = editTextDelAssistDataTime.getText().toString();
         return Integer.parseInt(delassistdatatime);
+    }
+    public boolean isRadioButtonUeb(){
+        return radioButtonUeb.isChecked();
+    }
+    public boolean isRadioButtonUea(){
+        return radioButtonUea.isChecked();
+    }
+    public boolean isRadioButtonNetwork(){
+        return radioButtonNetwork.isChecked();
+    }
+    public boolean isRadioButtonFlp(){
+        return radioButtonFlp.isChecked();
+    }
+    public boolean isRadioButtoniArea(){
+        return radioButtoniArea.isChecked();
+    }
+    public boolean isColdCheck(){
+        return checkBoxisCold.isChecked();
     }
     @Override
     protected void onDestroy(){

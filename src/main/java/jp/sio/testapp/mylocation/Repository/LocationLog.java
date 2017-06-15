@@ -49,25 +49,26 @@ public class LocationLog {
     /**
      * Logファイルを作成
      */
-    public void makeLogFile(){
+    public void makeLogFile(String settingHeader){
         //TODO: ログファイルの生成、csv形式
         if(isExternalStrageWriteable()){
             createLogTime = System.currentTimeMillis();
-            fileName = simpleDateFormat.format(createLogTime) + "txt";
+            fileName = simpleDateFormat.format(createLogTime) + ".txt";
             filePath = Environment.getExternalStorageDirectory().getPath() + "/"+ "MyLocation/" + fileName;
             L.d("LogFilePath:" + filePath);
 
             file = new File(filePath);
             file.getParentFile().mkdir();
+        }else{
+            L.d("ExternalStrage書き込み不可");
         }
         //TODO: headerに設定の項目を出力
         try{
             fileOutputStream = new FileOutputStream(file,true);
             outputStreamWriter = new OutputStreamWriter(fileOutputStream,"UTF-8");
             writer = new BufferedWriter(outputStreamWriter);
-            writer.write("headerTest");
-            writer.flush();
-            writer.close();
+            writer.write(settingHeader);
+            writer.newLine();
         } catch (FileNotFoundException e) {
             L.d(e.getMessage());
             e.printStackTrace();
@@ -78,22 +79,31 @@ public class LocationLog {
             L.d("write失敗");
             e.printStackTrace();
         }
-        //TODO: 出力する測位結果のheaderを出力
     }
 
     /**
      * Logファイルを閉じる(Readerとかを閉じる処理を想定)
      */
-    public void endLogFile() throws IOException {
-        fileOutputStream.close();
-        outputStreamWriter.close();
-        writer.close();
+    public void endLogFile(){
+        try {
+            fileOutputStream.close();
+            outputStreamWriter.close();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     /**
      * Logファイルへの書き込み
      */
-    public void writeLog(){
+    public void writeLog(String log){
         //TODO:日付、時間、測位結果を出力
+        try {
+            writer.append(log);
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     //externalStrageのReadとWriteが可能かチェック

@@ -23,7 +23,6 @@ public class MyLocationActivity extends AppCompatActivity {
     private Button buttonStop;
     private Button buttonSetting;
     private TextView tvResult;
-    private static ProgressDialog progressDialog;
 
     private Context context = this;
     private MyLocationPresenter presenter;
@@ -110,19 +109,6 @@ public class MyLocationActivity extends AppCompatActivity {
         buttonSetting.setEnabled(false);
     }
 
-    public void startProgressDialog(String message){
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle(message);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.show();
-    }
-
-    public void stopProgressDialog(){
-        if(progressDialog != null) {
-            progressDialog.dismiss();
-            progressDialog = null;
-        }
-    }
     public void showToast(String message){
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }

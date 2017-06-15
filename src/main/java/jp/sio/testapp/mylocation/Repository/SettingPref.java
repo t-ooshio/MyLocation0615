@@ -39,8 +39,9 @@ public class SettingPref {
         editor = settingPref.edit();
     }
 
-    public void setLocationType(String location){
-        editor.putString(context.getString(R.string.settingLocationType),location);
+    public void setLocationType(String locationType){
+        editor.putString(context.getString(R.string.settingLocationType),locationType);
+        L.d("SettingPrefLocationType:" + locationType);
         commitSetting();
     }
     public void setCount(int count){
@@ -68,7 +69,7 @@ public class SettingPref {
         commitSetting();
     }
     public String getLocationType(){
-        return settingPref.getString(context.getString(R.string.settingLocationType),defLocationType);
+        return settingPref.getString(context.getResources().getString(R.string.settingLocationType),defLocationType);
     }
     public int getCount(){
         return settingPref.getInt(context.getString(R.string.settingCount),defCount);

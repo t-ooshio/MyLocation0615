@@ -50,6 +50,7 @@ public class UebService extends Service implements LocationListener {
     private IntervalTimerTask intervalTimerTask;
 
     //設定値の格納用変数
+    private final String locationType = "UEB";
     private int settingCount;   // 0の場合は無制限に測位を続ける
     private long settingInterval;
     private long settingTimeout;
@@ -59,6 +60,7 @@ public class UebService extends Service implements LocationListener {
 
     //測位中の測位回数
     private int runningCount;
+    private long ttff;
 
     //測位成功の場合:true 測位失敗の場合:false を設定
     private boolean isLocationFix;
@@ -70,6 +72,9 @@ public class UebService extends Service implements LocationListener {
     SimpleDateFormat simpleDateFormatyyyy = new SimpleDateFormat("yyyyMMdd");
     SimpleDateFormat simpleDateFormatHH = new SimpleDateFormat("HH:mm:ss.sss");
 
+    //ログ出力用のヘッダー文字列 Settingのヘッダーと測位結果のヘッダー
+    private String settingHeader;
+    private String locationHeader;
 
     public class UebService_Binder extends Binder {
         public UebService getService() {
@@ -84,6 +89,10 @@ public class UebService extends Service implements LocationListener {
         resultHandler = new Handler();
         intervalHandler = new Handler();
         stopHandler = new Handler();
+
+        settingHeader = getResources().getString(R.string.settingHeader) + "\n";
+        locationHeader = getResources().getString(R.string.locationHeader) + "\n";
+
     }
 
     @Override
@@ -99,7 +108,7 @@ public class UebService extends Service implements LocationListener {
         //画面が消灯しないようにする処理
         //画面が消灯しないようにPowerManagerを使用
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        //画面つけっぱなし設定、非推奨の設定値だが試験アプリ的にはあったほうがいいので使用
+        //PowerManagerの画面つけっぱなし設定SCREEN_BRIGHT_WAKE_LOCK、非推奨の設定値だが試験アプリ的にはあったほうがいいので使用
         wakeLock = powerManager.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, getString(R.string.locationUeb));
         wakeLock.acquire();
 
@@ -115,7 +124,13 @@ public class UebService extends Service implements LocationListener {
 
         //ログファイルの生成
         locationLog = new LocationLog();
-        locationLog.makeLogFile();
+        locationLog.makeLogFile(settingHeader);
+        locationLog.writeLog(
+                locationType + "," + settingCount + "," + settingTimeout
+                        + "," + settingInterval + "," + settingSuplEndWaitTime + ","
+                        + settingDelAssistdatatime + "," + settingIsCold);
+        locationLog.writeLog("\n");
+        locationLog.writeLog(locationHeader);
         L.d("count:" + settingCount + " Timeout:" + settingTimeout + " Interval:" + settingInterval);
         L.d("suplendwaittime" + settingSuplEndWaitTime + " " + "DelAssist" + settingDelAssistdatatime);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -154,20 +169,22 @@ public class UebService extends Service implements LocationListener {
         //測位終了の時間を取得
         locationStopTime = System.currentTimeMillis();
         //測位タイムアウトのタイマーをクリア
-        stopTimer.cancel();
+        if(stopTimer != null) {
+            stopTimer.cancel();
+        }
         runningCount++;
         isLocationFix = true;
-
+        ttff = (locationStopTime - locationStartTime) / 1000;
         //測位結果の通知
         resultHandler.post(new Runnable() {
-            long ttff = (locationStopTime - locationStartTime) / 1000;
             @Override
             public void run() {
                 L.d("resultHandler.post");
                 sendLocationBroadCast(isLocationFix,location.getLatitude(),location.getLongitude(),ttff);
             }
         });
-        locationLog.writeLog();
+        locationLog.writeLog(locationStartTime  + "," + locationStopTime + "," + isLocationFix + ","
+                + location.getLatitude() + "," + location.getLongitude() + "," + ttff);
         L.d(location.getLatitude() + " " + location.getLongitude());
 
         try {
@@ -176,7 +193,9 @@ public class UebService extends Service implements LocationListener {
             L.d(e.getMessage());
             e.printStackTrace();
         }
-        locationManager.removeUpdates(this);
+        if(locationManager != null) {
+            locationManager.removeUpdates(this);
+        }
 
         //測位回数が設定値に到達しているかチェック
         if(runningCount == settingCount && settingCount != 0){
@@ -202,16 +221,19 @@ public class UebService extends Service implements LocationListener {
         runningCount++;
         isLocationFix = false;
         locationManager.removeUpdates(this);
+        ttff = (locationStopTime - locationStartTime) / 1000;
 
         //測位結果の通知
         resultHandler.post(new Runnable() {
-            long ttff = (locationStopTime - locationStartTime) / 1000;
             @Override
             public void run() {
                 L.d("resultHandler.post");
                 sendLocationBroadCast(isLocationFix,-1,-1,ttff);
             }
         });
+        locationLog.writeLog(locationStartTime  + "," + locationStopTime + "," + isLocationFix + ","
+                + "-1" + "," + "-1" + "," + ttff);
+
 
         //測位回数が設定値に到達しているかチェック
         if(settingCount == runningCount && settingCount != 0){
@@ -251,11 +273,7 @@ public class UebService extends Service implements LocationListener {
         if(powerManager != null) {
             powerManager = null;
         }
-        try {
-            locationLog.endLogFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        locationLog.endLogFile();
     }
 
     @Override

@@ -68,7 +68,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number|numberSigned|numberDecimal"
-                android:text="0"
                 app:layout_constraintTop_toBottomOf="@+id/TextViewCount" />
 
             <TextView
@@ -83,7 +82,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number|numberSigned|numberDecimal"
-                android:text="0"
                 app:layout_constraintTop_toBottomOf="@+id/TextViewTimeout" />
 
             <TextView
@@ -98,7 +96,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number|numberSigned|numberDecimal"
-                android:text="0"
                 app:layout_constraintTop_toBottomOf="@+id/TextViewInterval" />
 
             <TextView
@@ -113,7 +110,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number|numberSigned|numberDecimal"
-                android:text="0"
                 app:layout_constraintTop_toBottomOf="@+id/TextViewSuplEndWaitTime" />
 
             <TextView
@@ -128,7 +124,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number|numberSigned|numberDecimal"
-                android:text="0"
                 app:layout_constraintTop_toBottomOf="@+id/TextViewDelAssistDataTime" />
 
             <LinearLayout

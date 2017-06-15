@@ -9,6 +9,10 @@
     <!--- SettingActivity用-->
     <string name="settingActIsCold">アシストデータ削除</string>
 
+    <!---LocationLog用-->
+    <string name="settingHeader">測位方式,測位回数,測位タイムアウト,測位間隔,SUPLEND待ち時間,アシストデータ削除時間,アシストデータ削除有無</string>
+    <string name="locationHeader">測位開始時間,測位終了時間,測位成否,緯度,経度,TTFF</string>
+
     <!---Setting用の項目 -->
     <string name="settingPrefName">MyLocationSetting</string>
     <string name="settingLocationType">LOCATIONTYPE</string>
